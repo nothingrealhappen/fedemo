@@ -12,7 +12,7 @@ module.exports=function(grunt){
         },
         buildType:'Build',
         pkg: grunt.file.readJSON('package.json'),
-        archive_name: grunt.option('name') || 'StaticPage项目名称',//此处可根据自己的需求修改
+        archive_name: grunt.option('name') || 'bgscroll',//此处可根据自己的需求修改
 
         //清理掉开发时才需要的文件
         clean: {
