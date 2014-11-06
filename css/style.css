@@ -1,53 +1,254 @@
-@charset "utf-8";
-/*顶部为我们常用的reset样会死*/
-body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td {
-    margin: 0;
-    padding: 0
-}
+/*! bgscroll 2014-11-06 */
 
-body,button,input,select,textarea {
-    font: 12px/1.5 arial,sans-serif,'宋体';
-    color: #1C1C1C
-}
+@charset "UTF-8";
+/**
+ * StaticPage 自动
+ * url: http://this.is26.com
+ * blog: http://luolei.org
+ */
+/* 精简后的Reset样式:适用于桌面项目 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+  margin: 0;
+  padding: 0; }
 
-h1,h2,h3,h4,h5,h6 {
-    font-size: 100%
-}
+body, button, input, select, textarea {
+  font: 12px/1.5 arial,sans-serif,'宋体';
+  color: #1C1C1C; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%; }
 
 html {
-    _background-image: url(about:blank);
-    _background-attachment: fixed
-}
+  _background-image: url(about:blank);
+  _background-attachment: fixed; }
 
-em,i {
-    font-style: normal
-}
+em, i {
+  font-style: normal; }
 
-ul,ol {
-    list-style: none
-}
+ul, ol {
+  list-style: none; }
 
 a {
-    text-decoration: none;
-    color: #1C1C1C;
-    outline: 0;
-    _blr: expression(this.onFocus=this.blur())
-}
+  text-decoration: none;
+  color: #1C1C1C;
+  outline: 0;
+  _blr: expression(this.onFocus=this.blur()); }
 
 a:hover {
-    color:  #ddffde;
-    text-decoration: underline
-}
+  color: #555;
+  text-decoration: underline; }
 
-fieldset,img {
-    border: 0
-}
+fieldset, img {
+  border: 0; }
 
-button,input,select,textarea {
-    font-size: 100%
-}
+button, input, select, textarea {
+  font-size: 100%; }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0
-}
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* 此处可以自定义设置Sass的变量 */
+/* Sass基础样式 */
+.title {
+  font-size: 20px;
+  margin-bottom: 20px; }
+
+.index-body {
+  padding: 30px; }
+  .index-body li {
+    font-size: 15px; }
+
+.logo-body {
+  padding: 200px;
+  background: #111; }
+  .logo-body span {
+    display: block;
+    float: left; }
+  .logo-body .logo-l {
+    width: 60px;
+    height: 60px;
+    background: url(../images/geekpark_logo_left.png) 0 0 no-repeat;
+    background-image: url(../images/geekpark_logo_left.svg);
+    background-size: 100% 100%;
+    position: relative;
+    top: 11px;
+    margin-right: 15px; }
+  .logo-body .logo-r {
+    height: 82px;
+    width: 228px;
+    background: url(../images/geekpark_logo_right.png) 0 0 no-repeat;
+    background-image: url(../images/geekpark_logo_right.svg);
+    background-size: 100% 100%; }
+  .logo-body .logo:hover .logo-l {
+    animation: geekparklogo 0.8s ease-in-out infinite;
+    -webkit-animation: geekparklogo 1s ease-in-out infinite;
+    -moz-animation: geekparklogo 1s ease-in-out infinite;
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%; }
+
+@keyframes geekparklogo {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+@-webkit-keyframes geekparklogo {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes geekparklogo {
+  0% {
+    -moz-transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(360deg); } }
+.bgscroll-body h1 {
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 200px; }
+.bgscroll-body p {
+  font-size: 14px;
+  line-height: 28px;
+  margin: 40px; }
+.bgscroll-body .bg {
+  width: 100%;
+  height: 500px;
+  background: #fff url(../images/bg.jpg) center center no-repeat;
+  color: #fff;
+  transition: all 0.3s ease; }
+
+.card-body {
+  margin: 200px; }
+  .card-body .card {
+    width: 220px;
+    height: 300px;
+    float: left;
+    margin-right: 100px; }
+    .card-body .card .cardbg {
+      position: relative;
+      z-index: 10;
+      width: 220px;
+      height: 300px;
+      background: #fff url(../images/cardbg1.jpg) 0 0 no-repeat;
+      background-size: 100% 100%;
+      -webkit-transform: rotateY(0);
+      -moz-transform: rotateY(0);
+      -ms-transform: rotateY(0);
+      -o-transform: rotateY(0);
+      transform: rotateY(0);
+      transition: all .3s ease-in-out .3s; }
+    .card-body .card .cardtext {
+      position: relative;
+      z-index: 1;
+      width: 220px;
+      height: 300px;
+      background: #fff url(../images/card1.png) 0 0 no-repeat;
+      background-size: 100% 100%;
+      top: -300px;
+      -webkit-transform: rotateY(90deg);
+      -moz-transform: rotateY(90deg);
+      -ms-transform: rotateY(90deg);
+      -o-transform: rotateY(90deg);
+      transform: rotateY(90deg);
+      transition: all .3s ease-in-out; }
+  .card-body .card:hover .cardbg {
+    -webkit-transform: rotateY(90deg);
+    -moz-transform: rotateY(90deg);
+    -ms-transform: rotateY(90deg);
+    -o-transform: rotateY(90deg);
+    transform: rotateY(90deg);
+    transition: all .3s ease-in-out; }
+  .card-body .card:hover .cardtext {
+    -webkit-transform: rotateY(0);
+    -moz-transform: rotateY(0);
+    -ms-transform: rotateY(0);
+    -o-transform: rotateY(0);
+    transform: rotateY(0);
+    transition: all .3s ease-in-out .3s; }
+  .card-body .card2 .cardbg {
+    background-image: url("../images/cardbg2.jpg"); }
+  .card-body .card2 .cardtext {
+    background-image: url("../images/card2.png"); }
+  .card-body .card3 .cardbg {
+    background-image: url("../images/cardbg3.jpg"); }
+  .card-body .card3 .cardtext {
+    background-image: url("../images/card3.png"); }
+
+.cards-body {
+  padding-left: 300px;
+  padding-top: 100px; }
+  .cards-body .cardlist {
+    position: relative; }
+    .cards-body .cardlist .carditem {
+      position: absolute;
+      cursor: pointer;
+      float: left;
+      margin-right: 20px;
+      margin-bottom: 20px;
+      width: 222px;
+      height: 311px;
+      overflow: hidden;
+      left: 0;
+      top: 0;
+      transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+    .cards-body .cardlist .bosscard {
+      position: relative;
+      z-index: 10; }
+    .cards-body .cardlist .boss {
+      width: 222px;
+      height: 311px;
+      background: url(../images/boss.png) 0 0 no-repeat;
+      border-radius: 10px; }
+    .cards-body .cardlist .card {
+      width: 222px;
+      height: 311px;
+      border-radius: 10px;
+      background: url(../images/front.png) 0 0 no-repeat;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+      transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+    .cards-body .cardlist .front {
+      position: relative;
+      z-index: 2; }
+    .cards-body .cardlist .back {
+      background-image: url(../images/back.png);
+      position: relative;
+      top: -311px;
+      transform: rotateY(180deg); }
+    .cards-body .cardlist .carditem:hover .front {
+      transform: rotateY(180deg); }
+    .cards-body .cardlist .carditem:hover .back {
+      transform: rotateY(360deg); }
+  .cards-body .cardlist.on .card1 {
+    top: 0;
+    left: 242px; }
+  .cards-body .cardlist.on .card2 {
+    top: 0;
+    left: 484px; }
+  .cards-body .cardlist.on .card3 {
+    top: 0;
+    left: 726px; }
+  .cards-body .cardlist.on .card4 {
+    top: 331px;
+    left: 0px; }
+  .cards-body .cardlist.on .card5 {
+    top: 331px;
+    left: 242px; }
+  .cards-body .cardlist.on .card6 {
+    top: 331px;
+    left: 484px; }
+  .cards-body .cardlist.on .card7 {
+    top: 331px;
+    left: 726px; }
+
+#coolcard .anim-goback {
+  top: 0;
+  left: 0; }
+
+/* 针对不同分辨率的适配可以根据需求自定义 */
+@media only screen and (min-width: 481px) {
+  /* 适配480分辨率 */ }
+
+/*# sourceMappingURL=style.css.map */
