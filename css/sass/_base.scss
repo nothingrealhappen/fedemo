@@ -226,14 +226,14 @@
   $cardHeight: 311px;
   $margin: 20px;
   .cardlist.on {
-    .card1 { top: 0; left: ($cardwidth + $margin) * 1; }
-    .card2 { top: 0; left: ($cardwidth + $margin) * 2; }
-    .card3 { top: 0; left: ($cardwidth + $margin) * 3; }
+    .card1 { top: 0; left: ($cardwidth + $margin) * 1; transition-delay: 0.05s;}
+    .card2 { top: 0; left: ($cardwidth + $margin) * 2; transition-delay: 0.1s;}
+    .card3 { top: 0; left: ($cardwidth + $margin) * 3; transition-delay: 0.15s;}
 
-    .card4 { top: $cardHeight + $margin; left: ($cardwidth + $margin) * 0; }
-    .card5 { top: $cardHeight + $margin; left: ($cardwidth + $margin) * 1; }
-    .card6 { top: $cardHeight + $margin; left: ($cardwidth + $margin) * 2; }
-    .card7 { top: $cardHeight + $margin; left: ($cardwidth + $margin) * 3; }
+    .card4 { top: $cardHeight + $margin; left: ($cardwidth + $margin) * 0; transition-delay: 0.2s;}
+    .card5 { top: $cardHeight + $margin; left: ($cardwidth + $margin) * 1; transition-delay: 0.25s;}
+    .card6 { top: $cardHeight + $margin; left: ($cardwidth + $margin) * 2; transition-delay: 0.3s;}
+    .card7 { top: $cardHeight + $margin; left: ($cardwidth + $margin) * 3; transition-delay: 0.35s;}
   }
 }
 

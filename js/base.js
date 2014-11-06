@@ -37,10 +37,16 @@ function coolcard() {
   
 
   $('#coolcard .bosscard').click(function(){
-    $('#coolcard .bosscard').nextAll('.carditem').addClass('anim-goback');
-    setTimeout(function() {
-      $('#coolcard .bosscard').nextAll('.carditem').removeClass('anim-goback');
-    }, 700);
+    $('#coolcard .bosscard').nextAll('.carditem').each(function(){
+      $(this).addClass('anim-goback');
+      $(this).one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
+        function(event) {
+          $(this).removeClass('anim-goback');
+        }
+      );
+    });
+    // Do something when the transition ends
+  });
     
     // var cardSwitch = $(this).attr('data-switch');
     // if(cardSwitch == 'on') {
@@ -50,5 +56,33 @@ function coolcard() {
     //   $(this).attr('data-switch','on')
     //   $(this).nextAll('.carditem').removeClass('anim-goback');
     // }
-  });
 }
+
+
+function whichTransitionEvent(){
+  var t,
+      el = document.createElement("fakeelement");
+
+  var transitions = {
+    "transition"      : "transitionend",
+    "OTransition"     : "oTransitionEnd",
+    "MozTransition"   : "transitionend",
+    "WebkitTransition": "webkitTransitionEnd"
+  }
+
+  for (t in transitions){
+    if (el.style[t] !== undefined){
+      return transitions[t];
+    }
+  }
+}
+
+var transitionEvent = whichTransitionEvent();
+
+$(".button").click(function(){
+  $(this).addClass("animate");
+  $(this).one(transitionEvent,
+              function(event) {
+    // Do something when the transition ends
+  });
+});

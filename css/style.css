@@ -223,25 +223,32 @@ table {
       transform: rotateY(360deg); }
   .cards-body .cardlist.on .card1 {
     top: 0;
-    left: 242px; }
+    left: 242px;
+    transition-delay: 0.05s; }
   .cards-body .cardlist.on .card2 {
     top: 0;
-    left: 484px; }
+    left: 484px;
+    transition-delay: 0.1s; }
   .cards-body .cardlist.on .card3 {
     top: 0;
-    left: 726px; }
+    left: 726px;
+    transition-delay: 0.15s; }
   .cards-body .cardlist.on .card4 {
     top: 331px;
-    left: 0px; }
+    left: 0px;
+    transition-delay: 0.2s; }
   .cards-body .cardlist.on .card5 {
     top: 331px;
-    left: 242px; }
+    left: 242px;
+    transition-delay: 0.25s; }
   .cards-body .cardlist.on .card6 {
     top: 331px;
-    left: 484px; }
+    left: 484px;
+    transition-delay: 0.3s; }
   .cards-body .cardlist.on .card7 {
     top: 331px;
-    left: 726px; }
+    left: 726px;
+    transition-delay: 0.35s; }
 
 #coolcard .anim-goback {
   top: 0;
