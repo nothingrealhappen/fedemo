@@ -247,6 +247,11 @@ table {
   top: 0;
   left: 0; }
 
+.fish-canvas {
+  background: #bdeaff url(../images/canvas-bg.png) center center no-repeat;
+  background-size: 100% 100%;
+  border: 1px solid #000; }
+
 /* 针对不同分辨率的适配可以根据需求自定义 */
 @media only screen and (min-width: 481px) {
   /* 适配480分辨率 */ }
