@@ -37,12 +37,10 @@ function coolcard() {
   
 
   $('#coolcard .bosscard').click(function(){
+    $('#coolcard .bosscard').nextAll('.carditem').addClass('anim-goback');
     setTimeout(function() {
-      $('#coolcard .bosscard').nextAll('.carditem').addClass('anim-goback');
-      setTimeout(function() {
-        $('#coolcard .bosscard').nextAll('.carditem').removeClass('anim-goback');
-      }, 700);
-    }, 500);
+      $('#coolcard .bosscard').nextAll('.carditem').removeClass('anim-goback');
+    }, 700);
     
     // var cardSwitch = $(this).attr('data-switch');
     // if(cardSwitch == 'on') {
