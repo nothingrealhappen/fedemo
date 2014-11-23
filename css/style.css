@@ -1,4 +1,4 @@
-/*! bgscroll 2014-11-06 */
+/*! bgscroll 2014-11-20 */
 
 @charset "UTF-8";
 /**
@@ -258,6 +258,47 @@ table {
   background: #bdeaff url(../images/canvas-bg.png) center center no-repeat;
   background-size: 100% 100%;
   border: 1px solid #000; }
+
+.gifday {
+  padding-top: 30px; }
+  .gifday .page_title {
+    font-size: 2rem;
+    padding-left: 40px; }
+  .gifday .horbody {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    position: relative; }
+    .gifday .horbody .item {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transition: all 0.5s ease-in-out; }
+      .gifday .horbody .item .titlebar {
+        height: 100%;
+        float: left;
+        width: 50px;
+        background: #555;
+        text-align: center;
+        color: #fff;
+        cursor: pointer;
+        position: relative;
+        z-index: 5; }
+      .gifday .horbody .item .content {
+        float: left;
+        background: #aaa;
+        width: 100%;
+        margin-left: -50px;
+        padding-left: 50px;
+        box-sizing: border-box; }
+    .gifday .horbody .item1 {
+      background: #ff70c1; }
+    .gifday .horbody .item2 {
+      background: #9f70ff; }
+    .gifday .horbody .item3 {
+      background: #ffc170; }
 
 /* 针对不同分辨率的适配可以根据需求自定义 */
 @media only screen and (min-width: 481px) {

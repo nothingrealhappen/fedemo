@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload plugin demo</title>
+  <link rel="stylesheet" href="css/jquery.fileupload/jquery.fileupload.css">
+</head>
+<body>
+
+  <input id="fileupload" type="file" name="files[]" data-url="php/index.php" multiple>
+
+  <div id="progress">
+    <div class="bar" style="width: 0%;"></div>
+  </div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+  <script src="js/jquery.fileupload/jquery.ui.widget.js"></script>
+  <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+  <script src="js/jquery.fileupload/load-image.all.min.js"></script>
+  <!-- The Canvas to Blob plugin is included for image resizing functionality -->
+  <script src="js/jquery.fileupload/canvas-to-blob.min.js"></script>
+  <!-- The basic File Upload plugin -->
+  <script src="js/jquery.fileupload/jquery.fileupload.js"></script>
+  <!-- The File Upload processing plugin -->
+  <script src="js/jquery.fileupload/jquery.fileupload-process.js"></script>
+  <!-- The File Upload image preview & resize plugin -->
+  <script src="js/jquery.fileupload/jquery.fileupload-image.js"></script>
+  <script>
+  $(function(){
+    // Plugin source: https://github.com/blueimp/jQuery-File-Upload/wiki
+    // 修改原型使支持多图上传时的图片裁剪等
+    $.blueimp.fileupload.prototype.processActions.duplicateImage = function (data, options) {
+      if (data.canvas) {
+          data.files.push(data.files[data.index]);
+      }
+      return data;
+    };
+
+    $('#fileupload').fileupload({
+
+      /*
+      // 将一张大图分成几个版本      
+      processQueue: [
+          {
+              action: 'loadImage',
+              fileTypes: /^image\/(gif|jpeg|png)$/,
+              maxFileSize: 20000000 // 20MB
+          },
+          {
+              action: 'resizeImage',
+              maxWidth: 1920,
+              maxHeight: 1200
+          },
+          {action: 'saveImage'},
+          {action: 'duplicateImage'},
+          {
+              action: 'resizeImage',
+              maxWidth: 1280,
+              maxHeight: 1024
+          },
+          {action: 'saveImage'},
+          {action: 'duplicateImage'},
+          {
+              action: 'resizeImage',
+              maxWidth: 1024,
+              maxHeight: 768
+          },
+          {action: 'saveImage'}
+      ],
+      */
+      
+      dataType: 'json',
+      disableImageResize: /Android(?!.*Chrome)|Opera/
+        .test(window.navigator && navigator.userAgent),
+      imageMaxWidth: 800,
+      imageMaxHeight: 800,
+      imageCrop: true, // Force cropped images
+      progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress .bar').css(
+          'width',
+          progress + '%'
+        );
+      },
+      done: function (e, data) {
+        $.each(data.result.files, function (index, file) {
+          $('<p/>').html(file.name).appendTo(document.body);
+        });
+      }
+
+
+    });
+    $('#fileupload').change(function(e){
+      loadImage(
+        e.target.files[0],
+        function (img) {
+            document.body.appendChild(img);
+            var scaledImage = loadImage.scale(
+                img, // img or canvas element
+                {maxWidth: 600}
+            );
+        },
+        {maxWidth: 600} // Options
+      );
+    });
+  });
+  </script>
+</body>
+</html>

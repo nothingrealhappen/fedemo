@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+  <title>Gif手风琴效果</title>
+  <meta name="keywords" content=" " />
+  <meta name="description" content="  " />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link href="assets/css/min.style.css" rel="stylesheet" type="text/css" />
+  <script src="js/jquery.min.js"></script>
+  <script src="js/base.js"></script>
+</head>
+<body class="gifday">
+  <h2 class="page_title">Gif 手风琴效果</h2>
+  <div class="horbody">
+    <div class="item on">
+      <div class="titlebar">1</div>
+      <div class="content">balabala</div>
+    </div>
+    <div class="item">
+      <div class="titlebar">2</div>
+      <div class="content">balabala</div>
+    </div>
+    <div class="item">
+      <div class="titlebar">3</div>
+      <div class="content">balabala</div>
+    </div>
+    <div class="item">
+      <div class="titlebar">4</div>
+      <div class="content">balabala</div>
+    </div>
+  </div>
+  <script>
+    $(function(){
+      var barW = 50,
+          browserWidth = window.innerWidth,
+          style = '',
+          itemLength = $('.horbody .item').length;
+      $('.horbody').width(browserWidth);
+      $('.horbody .item').each(function(index){
+        $(this).data('id', index);
+        if(index) {
+          $(this).addClass('item'+index);
+          var styleStr = '.item'+index+'{'+
+                            'left: '+ (browserWidth-(itemLength-index)*barW) +'px;'+
+                         '}'+
+                         '.item'+index+'.on {'+
+                            'left: '+ index*barW +'px;'+
+                         '}';
+          style += styleStr;
+        }
+      });
+      var styleTag = document.createElement('style');
+      $(styleTag).text(style);
+      $('body').append(styleTag);
+      $('.horbody .item').click(function(index){
+        $this = $(this);
+        var clickedIndex = $this.data('id');
+        if($this.hasClass('on')) {
+          var action = 'goOff';
+        } else {
+          var action = 'goOn';
+        }
+        $('.horbody .item').each(function(index){
+          if(action == 'goOff') {
+            if(index + 1>clickedIndex) {
+              $(this).removeClass('on');
+            }
+          } else {
+            if(index<clickedIndex) {
+              $(this).addClass('on');
+            }
+          }
+        });
+        $this.toggleClass('on');
+      });
+    });
+  </script>
+</body>
+</html>
