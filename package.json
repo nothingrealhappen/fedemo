@@ -18,5 +18,8 @@
     "grunt-contrib-htmlmin": "^0.2.0",
     "grunt-closure-compiler": "0.0.21",
     "grunt-sftp-deploy": "^0.2.0"
+  },
+  "dependencies": {
+    "grunt-http-server": "^1.4.0"
   }
 }

@@ -194,6 +194,30 @@ module.exports=function(grunt){
             concurrency: 4,
             progress: true
           }
+        },
+
+        'http-server': {
+          'dev': {
+            root: './',
+            // the server port
+            // can also be written as a function, e.g.
+            // port: function() { return 8282; }
+            port: 8000,
+            // the host ip address
+            // If specified to, for example, "127.0.0.1" the server will
+            // only be available on that ip.
+            // Specify "0.0.0.0" to be available everywhere
+            host: "0.0.0.0",
+            showDir : true,
+            autoIndex: true,
+            // server default file extension
+            ext: "html",
+            // run in parallel with other tasks
+            runInBackground: false,
+            // specify a logger function. By default the requests are
+            // sent to stdout.
+            logFn: function(req, res, error) { }
+          }
         }
 
     });
@@ -214,9 +238,12 @@ module.exports=function(grunt){
     grunt.loadNpmTasks('grunt-ftp-deploy');
     grunt.loadNpmTasks('grunt-sftp-deploy');
     grunt.loadNpmTasks('grunt-closure-compiler');//增加谷歌高级压缩
+    grunt.loadNpmTasks('grunt-http-server');
+
     /*下方为配置的常用 grunt 命令*/
     grunt.registerTask('default', ['cssmin','uglify','htmlmin','copy:images']);
     grunt.registerTask('style', ['sass:admin','cssmin']);
+    grunt.registerTask('server', ['http-server']);
     //执行 grunt bundle --最终输出的文件 < name-生成日期.zip > 文件
     grunt.registerTask('bundle', ['clean:pre','copy:images', 'copy:main','cssmin','copy:archive', 'clean:post','htmlmin','compress',]);
     //执行 grunt publish 可以直接上传项目文件到指定服务器FTP目录
@@ -224,6 +251,7 @@ module.exports=function(grunt){
     //执行 grunt ssh 可以利用 ssh 上传到服务器
     grunt.registerTask('ssh', ['sftp-deploy']);
     //执行 grunt gcc 可进行谷歌压缩
-     grunt.registerTask('gcc', ['closure-compiler']);
+    grunt.registerTask('gcc', ['closure-compiler']);
+    // http server
 
 };
