@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标划过涟漪效果</title>
+	<style>
+		html,body {
+			padding: 0;
+			margin: 0;
+		}
+		canvas {
+			border: 1px solid #000;
+			background-color: #212328;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="1200" height="600"></canvas>
+	<script type="text/javascript">
+		window.onload = function () {
+			// map the animation function jk
+			window.requestAnimFrame = (function(callback) {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        function(callback) {
+          window.setTimeout(callback, 1000 / 60);
+        };
+      })();
+
+			// get canvas
+			var canvas = document.getElementById('canvas');
+			var ctx = canvas.getContext('2d');
+			var config = {
+				level2: 0.75,
+				level3: 0.5,
+				down: 300,
+				size: 20,
+				lifeCycle: 1500 // milliseconds
+			};
+			var rippleArr = [];
+
+			canvas.addEventListener('mousemove', function (e) {
+				generRipple({
+					x: e.offsetX,
+					y: e.offsetY
+				});
+			});
+
+			// 每次生成涟漪其实只是往涟漪数组里增加几个涟漪，然后用render统一刷新
+			function generRipple(opt) {
+				var size = opt && opt.size || config.size || 50,
+						mouseX = opt && opt.x || 200,
+						mouseY = opt && opt.y || 200;
+
+				rippleArr.push({
+					size: size,
+					x: mouseX,
+					y: mouseY,
+					time: Date.now()
+				});
+			}
+
+			// 画一个圆
+			function drawArc (x, y, radius, fillStyle) {
+				ctx.beginPath();
+				ctx.fillStyle = fillStyle;
+				ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    		ctx.fill();
+				ctx.closePath();
+			}
+
+			// 从涟漪数组里检查有几个涟漪，并刷新显示出来
+			function render() {
+				// clear canvas
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				var nowTime = Date.now();
+
+				rippleArr.forEach(function (val, index, arr) {
+					var ratio,
+							down;
+					// 计算出当前的涟漪应该有多大
+					if( nowTime < val.time + config.lifeCycle) {
+						if( nowTime < val.time + config.lifeCycle / 4) {
+							ratio = (nowTime - val.time) * 4 / config.lifeCycle;
+							drawArc(val.x, val.y, val.size * ratio, '#872a11');
+							drawArc(val.x, val.y, val.size * config.level2 * ratio, '#c22f00');
+							drawArc(val.x, val.y, val.size * config.level3 * ratio, '#ff3a00');
+						} else {
+							// ratio =
+							ratio = config.lifeCycle - config.lifeCycle / 4;
+							ratio = (nowTime - val.time - config.lifeCycle / 4) / ratio;
+							down = ratio* config.down;
+							ctx.globalAlpha = 1 - ratio;
+							drawArc(val.x, val.y + down, val.size, '#872a11');
+							drawArc(val.x, val.y + down, val.size * config.level2, '#c22f00');
+							drawArc(val.x, val.y + down, val.size * config.level3, '#ff3a00');
+						}
+					} else {
+						rippleArr.splice(index, 1);
+					}
+				});
+
+				window.requestAnimFrame(render);
+			}
+
+
+
+			window.requestAnimFrame(render);
+
+		};
+	</script>
+</body>
+</html>
